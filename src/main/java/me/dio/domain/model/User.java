@@ -2,6 +2,7 @@ package me.dio.domain.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "tb_user")
@@ -12,6 +13,8 @@ public class User {
     private Long id;
 
     private String name;
+
+    private LocalDate birthDate; // campo adicionado
 
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
@@ -24,6 +27,8 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<News> news;
+
+    // Getters e Setters
 
     public Long getId() {
         return id;
@@ -39,6 +44,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Account getAccount() {
@@ -72,5 +85,4 @@ public class User {
     public void setNews(List<News> news) {
         this.news = news;
     }
-
 }
